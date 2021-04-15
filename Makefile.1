@@ -1,0 +1,14 @@
+all: ./bin/myapp
+
+./bin/myapp: ./build/foo.o ./build/goo.o ./build/myapp.o
+	gcc -o ./bin/myapp ./build/foo.o ./build/goo.o ./build/myapp.o -I ./include
+./build/foo.o: ./src/foo.c
+	gcc -c ./src/foo.c -o ./build/foo.o -I ./include
+./build/goo.o: ./src/goo.c
+	gcc -c ./src/goo.c -o ./build/goo.o -I ./include
+./build/myapp.o: ./src/myapp.c
+	gcc -c ./src/myapp.c -o ./build/myapp.o -I ./include
+
+clean:
+	rm ./build/*.o
+	rm ./bin/*
